@@ -1,17 +1,32 @@
-import React from 'react';
-import { render } from 'react-dom';
-import 'typeface-roboto';
-import App from './App';
+import React from "react";
+import { render } from "react-dom";
+import "typeface-poppins";
+import configureStore, { history } from "./store/configureStore";
+import App from "./App";
+import "./App.css";
+import { BrowserRouter } from "react-router-dom";
 
-render(<App />, document.getElementById('app'));
+const store = configureStore();
+
+render(
+  <BrowserRouter basename="/">
+    <App history={history} store={store} />
+  </BrowserRouter>,
+  document.getElementById("app")
+);
 
 moduleHotAccept(module);
 
 export function moduleHotAccept(mod) {
   if (mod.hot) {
-    mod.hot.accept('./App', () => {
-      const NewApp = require('./App').default;
-      render(<NewApp />, document.getElementById('app'));
+    mod.hot.accept("./App", () => {
+      const NewApp = require("./App").default;
+      render(
+        <BrowserRouter basename="/">
+          <NewApp history={history} store={store} />
+        </BrowserRouter>,
+        document.getElementById("app")
+      );
     });
   }
 }
