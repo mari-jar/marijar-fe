@@ -1,37 +1,40 @@
 /* eslint-disable no-unused-vars */
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const CompressionPlugin = require('compression-webpack-plugin');
+const webpack = require("webpack");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.json'],
+    extensions: ["*", ".js", ".jsx", ".json"],
   },
-  devtool: 'eval-cheap-module-source-map',
+  devtool: "eval-cheap-module-source-map",
   devServer: {
     historyApiFallback: true,
-    contentBase: path.resolve(__dirname, 'dist'),
+    contentBase: path.resolve(__dirname, "dist"),
     open: false,
     compress: true,
     hot: true,
-    port: 4000,
+    port: 5000,
   },
-  entry: ['./tools/webpack-public-path', path.resolve(__dirname, 'src/index.js')],
-  target: 'web',
-  mode: 'development',
+  entry: [
+    "./tools/webpack-public-path",
+    path.resolve(__dirname, "src/index.js"),
+  ],
+  target: "web",
+  mode: "development",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/",
+    filename: "bundle.js",
   },
   plugins: [
-    new webpack.EnvironmentPlugin({ MODE: 'development' }),
+    new webpack.EnvironmentPlugin({ MODE: "development" }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new CompressionPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/index.ejs',
+      template: "src/index.ejs",
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -44,20 +47,20 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: ["babel-loader"],
       },
       {
         test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-        use: ['file-loader'],
+        use: ["file-loader"],
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 10000,
-              mimetype: 'application/font-woff',
+              mimetype: "application/font-woff",
             },
           },
         ],
@@ -66,10 +69,10 @@ module.exports = {
         test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 10000,
-              mimetype: 'application/octet-stream',
+              mimetype: "application/octet-stream",
             },
           },
         ],
@@ -78,10 +81,10 @@ module.exports = {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: "url-loader",
             options: {
               limit: 10000,
-              mimetype: 'image/svg+xml',
+              mimetype: "image/svg+xml",
             },
           },
         ],
@@ -90,9 +93,9 @@ module.exports = {
         test: /\.(jpe?g|png|gif|ico)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[ext]',
+              name: "[name].[ext]",
             },
           },
         ],
@@ -102,13 +105,19 @@ module.exports = {
           {
             test: /(\.scoped\.css|\.scoped\.scss|\.scoped\.sass)$/,
             use: [
-              'style-loader',
+              "style-loader",
               {
-                loader: 'css-loader',
+                loader: "css-loader",
                 options: {
                   modules: {
-                    getLocalIdent: ({ resourcePath }, localIdentName, localName) => {
-                      const [file, component, type] = resourcePath.split(path.sep).reverse();
+                    getLocalIdent: (
+                      { resourcePath },
+                      localIdentName,
+                      localName
+                    ) => {
+                      const [file, component, type] = resourcePath
+                        .split(path.sep)
+                        .reverse();
 
                       return `${type.slice(0, 2)}-${component}__${localName}`;
                     },
@@ -117,9 +126,9 @@ module.exports = {
                 },
               },
               {
-                loader: 'postcss-loader',
+                loader: "postcss-loader",
                 options: {
-                  postcssOptions: { plugins: ['autoprefixer'] },
+                  postcssOptions: { plugins: ["autoprefixer"] },
                   sourceMap: true,
                 },
               },
@@ -128,17 +137,17 @@ module.exports = {
           {
             test: /(\.css|\.scss|\.sass)$/,
             use: [
-              'style-loader',
+              "style-loader",
               {
-                loader: 'css-loader',
+                loader: "css-loader",
                 options: {
                   sourceMap: true,
                 },
               },
               {
-                loader: 'postcss-loader',
+                loader: "postcss-loader",
                 options: {
-                  postcssOptions: { plugins: ['autoprefixer'] },
+                  postcssOptions: { plugins: ["autoprefixer"] },
                   sourceMap: true,
                 },
               },

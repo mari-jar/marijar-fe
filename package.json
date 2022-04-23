@@ -80,8 +80,31 @@
     "workbox-webpack-plugin": "^6.1.2"
   },
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.6.2",
+    "@mui/material": "^5.6.1",
+    "@mui/styles": "^5.6.2",
+    "axios": "^0.26.1",
+    "classnames": "^2.3.1",
+    "moment": "^2.29.3",
+    "mongoose": "^6.3.1",
+    "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-feather": "^2.0.9",
+    "react-helmet": "^6.1.0",
+    "react-redux": "^7.2.8",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.1.2",
+    "redux-form": "^8.3.8",
+    "redux-thunk": "^2.4.1",
+    "typeface-poppins": "^1.1.13",
     "typeface-roboto": "^1.1.13"
+  },
+  "alias": {
+    "react-dom": "@hot-loader/react-dom"
   }
 }
