@@ -24,7 +24,10 @@ const LoginPage = () => {
   };
 
   return (
-    <Page className={width < 1090 ? classes.rootNoBg : classes.root}>
+    <Page
+      className={width < 1090 ? classes.rootNoBg : classes.root}
+      title="Login Marijar"
+    >
       <Grid container direction={"row"} justifyContent="center">
         {width > 1090 && <Grid item xs={8} />}
         <Grid item xs={width > 1090 ? 4 : 6}>
@@ -46,7 +49,7 @@ const LoginPage = () => {
               <h1>Sign In to Marijar.co</h1>
             </Box>
             <Box mt={2}>
-              <p>Lorem, ipsum dolor sit amet consectetur</p>
+              <p>The journey is waiting for you!</p>
             </Box>
             <Box py={2} maxWidth={500}>
               <LoginForm onSubmit={onSubmit} classes={classes} />

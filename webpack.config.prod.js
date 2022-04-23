@@ -19,7 +19,7 @@ module.exports = {
   target: "web",
   mode: "production",
   output: {
-    path: path.resolve(__dirname, "build"),
+    path: path.resolve(__dirname, "dist"),
     publicPath: "/",
     filename: "[name].[chunkhash].js",
   },

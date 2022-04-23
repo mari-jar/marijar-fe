@@ -47,8 +47,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "500",
   },
   forgotButton: {
+    "&:hover": {
+      textDecoration: "underline",
+    },
     color: "#2D9CDB",
     fontSize: "14px",
+    cursor: "pointer",
   },
   rememberButton: {
     color: "#828282",
