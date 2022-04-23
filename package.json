@@ -8,7 +8,8 @@
     "build:development": "webpack --config webpack.config.dev.js --color --progress",
     "build:production": "webpack --config webpack.config.prod.js --color --progress",
     "dev": "concurrently -k -r \"npm:serve\" ",
-    "serve": "webpack serve --config webpack.config.dev.js"
+    "serve": "webpack serve --config webpack.config.dev.js",
+    "start": "node tools/server.js"
   },
   "keywords": [],
   "author": "",
