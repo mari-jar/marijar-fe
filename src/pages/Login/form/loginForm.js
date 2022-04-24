@@ -59,6 +59,7 @@ const LoginForm = ({ classes, handleSubmit }) => {
         <Grid item xs={12}>
           <Box
             mt={2}
+            px={2}
             display="flex"
             flexDirection={"row"}
             justifyContent="space-between"

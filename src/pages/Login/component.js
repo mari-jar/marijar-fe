@@ -4,9 +4,11 @@ import Page from "../../component/elements/Page";
 import { Box, Grid } from "@mui/material";
 import Logo from "../../assets/logos.svg";
 import LoginForm from "./form";
+import { useNavigate } from "react-router";
 
 const LoginPage = () => {
   const [width, setWidth] = useState(window.innerWidth);
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleResize() {
@@ -20,7 +22,7 @@ const LoginPage = () => {
   const classes = useStyles();
 
   const onSubmit = (val) => {
-    console.log(val);
+    navigate("/dashboard");
   };
 
   return (

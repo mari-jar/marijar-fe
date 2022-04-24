@@ -11,5 +11,4 @@ export default reduxForm({
   form: "login",
   validate,
   initialValues,
-  touchOnBlur: false,
 })(Component);

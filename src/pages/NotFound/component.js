@@ -10,7 +10,7 @@ const NotFound = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   return (
-    <Page title="Page not found">
+    <Page title="Page not found - Marijar.co">
       <Container maxWidth="md">
         <Grid
           container
