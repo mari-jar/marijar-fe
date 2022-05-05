@@ -4,7 +4,9 @@ import loginBg from "../../assets/aaaa.png";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundImage: `url(${loginBg})`,
-    backgroundSize: "cover",
+    backgroundSize: "contain",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
     height: "100vh",
   },
   rootNoBg: {
