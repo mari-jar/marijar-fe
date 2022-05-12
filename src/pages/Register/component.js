@@ -3,10 +3,10 @@ import useStyles from "./styles";
 import Page from "../../component/elements/Page";
 import { Box, Grid } from "@mui/material";
 import Logo from "../../assets/logos.svg";
-import LoginForm from "./form";
 import { useNavigate } from "react-router";
+import RegisterForm from "./form";
 
-const LoginPage = () => {
+const Register = () => {
   const [width, setWidth] = useState(window.innerWidth);
   const navigate = useNavigate();
 
@@ -24,11 +24,10 @@ const LoginPage = () => {
   const onSubmit = (val) => {
     navigate("/dashboard");
   };
-
   return (
     <Page
       className={width < 1090 ? classes.rootNoBg : classes.root}
-      title="Sign In - Marijar"
+      title="Account Creation - Marijar"
     >
       <Grid container direction={"row"} justifyContent="center">
         {width > 1090 && <Grid item xs={8} />}
@@ -48,13 +47,13 @@ const LoginPage = () => {
               </Box>
             </Box>
             <Box mt={3}>
-              <h1>Sign In to Marijar.co</h1>
+              <h1>Sign Up to Marijar.co</h1>
             </Box>
             <Box mt={2}>
-              <p>The journey is waiting for you!</p>
+              <p>Start your journey now!</p>
             </Box>
             <Box py={2} maxWidth={500}>
-              <LoginForm onSubmit={onSubmit} classes={classes} />
+              <RegisterForm onSubmit={onSubmit} classes={classes} />
             </Box>
           </Box>
         </Grid>
@@ -63,4 +62,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Register;

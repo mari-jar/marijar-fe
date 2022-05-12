@@ -1,8 +1,10 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import DashboardLayout from "./component/layouts/DashboardLayout";
-import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
+
+import pages from "./pages";
+
+const { Error404, Login, Register } = pages;
 
 const DummyComp = ({ title }) => {
   return <h1>{title}</h1>;
@@ -16,6 +18,10 @@ const routes = (login) => [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/dashboard",
@@ -34,7 +40,7 @@ const routes = (login) => [
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: <Error404 />,
   },
 ];
 

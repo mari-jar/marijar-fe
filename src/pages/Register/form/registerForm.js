@@ -39,6 +39,18 @@ const LoginForm = ({ classes, handleSubmit }) => {
             <Field
               classes={classes}
               fullWidth
+              name="name"
+              label="Name"
+              placeholder="Name"
+              component={renderField}
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box my={1}>
+            <Field
+              classes={classes}
+              fullWidth
               name="email"
               label="Email"
               placeholder="Email Address"
@@ -46,6 +58,7 @@ const LoginForm = ({ classes, handleSubmit }) => {
             />
           </Box>
         </Grid>
+
         <Grid item xs={12}>
           <Box my={1}>
             <Field
@@ -60,28 +73,22 @@ const LoginForm = ({ classes, handleSubmit }) => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Box
-            mt={2}
-            px={2}
-            display="flex"
-            flexDirection={"row"}
-            justifyContent="space-between"
-            alignItems={"center"}
-          >
-            <FormControl>
-              <FormControlLabel
-                className={classes.rememberButton}
-                control={<Checkbox />}
-                label="Remember Me"
-              />
-            </FormControl>
-            <p className={classes.forgotButton}>Forget Password?</p>
+          <Box my={1}>
+            <Field
+              classes={classes}
+              fullWidth
+              name="confirmPassword"
+              label="Confirm Password"
+              type="password"
+              placeholder="Confirm Password"
+              component={renderField}
+            />
           </Box>
         </Grid>
         <Grid item xs={12}>
           <Box px={5} mt={4}>
             <Button className={classes.buttonLogin} fullWidth type="submit">
-              Sign In
+              Sign Up
             </Button>
           </Box>
         </Grid>
@@ -99,15 +106,15 @@ const LoginForm = ({ classes, handleSubmit }) => {
                 fontSize: "14px",
               }}
             >
-              Doesn't have an account?{" "}
+              Already have an account?{" "}
               <span
                 onClick={() => {
-                  navigate("/register");
+                  navigate("/login");
                 }}
                 className={classes.forgotButton}
               >
                 {" "}
-                Register
+                Sign In
               </span>
             </p>
           </Box>

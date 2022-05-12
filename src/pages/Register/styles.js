@@ -1,15 +1,16 @@
 import { makeStyles } from "@mui/styles";
-import loginBg from "../../assets/aaaa.png";
+import regBg from "../../assets/register.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundImage: `url(${loginBg})`,
+    backgroundImage: `url(${regBg})`,
     backgroundSize: "cover",
     width: "100%",
     height: "100vh",
     "-webkit-background-size": "cover",
     "-moz-background-size": "cover",
     "-o-background-size": "cover",
+    overflow: "none",
   },
   rootNoBg: {
     background: "#fefefe",
