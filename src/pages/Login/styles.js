@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import loginBg from "../../assets/aaaa.png";
+import loginBg from "../../assets/bgBasic.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -9,6 +9,12 @@ export default function validate(values) {
       );
   };
 
+  const validatePhone = (phone) => {
+    return String(phone).match(
+      /((\+62 8\d{2}([ -])|08\d{2}([ -]?)|\+628\d{2})\d{4}(\3\4)\d{2,5})/
+    );
+  };
+
   return {
     email: !email
       ? "Please enter your email!"
@@ -18,6 +24,8 @@ export default function validate(values) {
     confirmPassword: !confirmPassword
       ? "Please enter your password confirmation!"
       : confirmPassword !== password && "Confirmation password is not same",
-    phoneNumber: !phoneNumber && "Please enter your phone number!",
+    phoneNumber: !phoneNumber
+      ? "Please enter your phone number!"
+      : !validatePhone(phoneNumber) && "Your phone number is not valid",
   };
 }

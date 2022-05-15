@@ -51,6 +51,21 @@ const LoginForm = ({ classes, handleSubmit }) => {
             <Field
               classes={classes}
               fullWidth
+              name="phoneNumber"
+              label="Phone Number"
+              placeholder="Phone Number"
+              component={renderField}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              normalize={(val) => (val || "").replace(/[^\d]/g, "")}
+            />
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Box my={1}>
+            <Field
+              classes={classes}
+              fullWidth
               name="email"
               label="Email"
               placeholder="Email Address"

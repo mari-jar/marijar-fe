@@ -5,6 +5,7 @@ import { Box, Grid } from "@mui/material";
 import Logo from "../../assets/logos.svg";
 import LoginForm from "./form";
 import { useNavigate } from "react-router";
+import Saly from "../../assets/salylog.png";
 
 const LoginPage = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -31,7 +32,13 @@ const LoginPage = () => {
       title="Sign In - Marijar"
     >
       <Grid container direction={"row"} justifyContent="center">
-        {width > 1090 && <Grid item xs={8} />}
+        {width > 1090 && (
+          <Grid item xs={8}>
+            <Box mx={width <= 1350 ? 8 : 30} pt={10}>
+              <img src={Saly} alt="saly" height={"800px"} />
+            </Box>
+          </Grid>
+        )}
         <Grid item xs={width > 1090 ? 4 : 6}>
           <Box py={10} pr={4}>
             <Box

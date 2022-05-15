@@ -3,6 +3,7 @@ import useStyles from "./styles";
 import Page from "../../component/elements/Page";
 import { Box, Grid } from "@mui/material";
 import Logo from "../../assets/logos.svg";
+import Saly from "../../assets/saly.png";
 import { useNavigate } from "react-router";
 import RegisterForm from "./form";
 
@@ -30,7 +31,13 @@ const Register = () => {
       title="Account Creation - Marijar"
     >
       <Grid container direction={"row"} justifyContent="center">
-        {width > 1090 && <Grid item xs={8} />}
+        {width > 1090 && (
+          <Grid item xs={8}>
+            <Box mx={width <= 1350 ? 30 : 50} pt={20}>
+              <img src={Saly} alt="saly" height={"600px"} />
+            </Box>
+          </Grid>
+        )}
         <Grid item xs={width > 1090 ? 4 : 6}>
           <Box py={10} pr={4}>
             <Box
