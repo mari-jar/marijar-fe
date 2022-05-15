@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   InputBase,
   FormControl,
@@ -8,9 +8,15 @@ import {
   Grid,
   Box,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import { Field } from "redux-form";
 import { useNavigate } from "react-router";
+import useAction from "../../hooks/useAction";
+import Cookies from "universal-cookie";
+import CryptoJs from "crypto-js";
+import { useSelector } from "react-redux";
+import { encKey } from "../../../../configs/globalKeys";
 
 const renderField = ({
   classes,
@@ -28,7 +34,15 @@ const renderField = ({
   </FormControl>
 );
 
-const LoginForm = ({ classes, handleSubmit }) => {
+const LoginForm = (props) => {
+  const { handleSubmit, classes, change } = props;
+  const { remember, setRemember, forgetPassword } = useAction();
+  const cookies = new Cookies();
+
+  const userData = cookies.get("userInfo");
+
+  const { SUBMIT } = useSelector((s) => s.login);
+
   const navigate = useNavigate();
 
   return (
@@ -47,68 +61,33 @@ const LoginForm = ({ classes, handleSubmit }) => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Box mt={1}>
-            <Field
-              classes={classes}
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              placeholder="Password"
-              component={renderField}
-            />
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
           <Box
             mt={2}
             display="flex"
             flexDirection={"row"}
-            justifyContent="space-between"
+            justifyContent="end"
             alignItems={"center"}
           >
-            <FormControl>
-              <FormControlLabel
-                className={classes.rememberButton}
-                control={<Checkbox />}
-                label="Remember Me"
-              />
-            </FormControl>
-            <p className={classes.forgotButton}>Forget Password?</p>
+            <p
+              className={classes.forgotButton}
+              onClick={(e) => {
+                e.preventDefault();
+                forgetPassword(false);
+              }}
+            >
+              Back to Sign In
+            </p>
           </Box>
         </Grid>
         <Grid item xs={12}>
           <Box px={2} mt={4}>
             <Button className={classes.buttonLogin} fullWidth type="submit">
-              Sign In
+              {SUBMIT ? (
+                <CircularProgress style={{ color: "#fff" }} size={30} />
+              ) : (
+                "Reset Password"
+              )}
             </Button>
-          </Box>
-        </Grid>
-        <Grid item xs={12}>
-          <Box
-            px={2}
-            mt={4}
-            display="flex"
-            alignItems={"center"}
-            justifyContent="center"
-          >
-            <p
-              style={{
-                color: "#828282",
-                fontSize: "14px",
-              }}
-            >
-              Doesn't have an account?{" "}
-              <span
-                onClick={() => {
-                  navigate("/register");
-                }}
-                className={classes.forgotButton}
-              >
-                {" "}
-                Register
-              </span>
-            </p>
           </Box>
         </Grid>
       </Grid>

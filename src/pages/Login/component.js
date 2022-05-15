@@ -3,27 +3,35 @@ import useStyles from "./styles";
 import Page from "../../component/elements/Page";
 import { Box, Grid } from "@mui/material";
 import Logo from "../../assets/logos.svg";
-import LoginForm from "./form";
-import { useNavigate } from "react-router";
+import LoginForm from "./form/loginForm";
+import ForgetForm from "./form/forgetForm";
 import Saly from "../../assets/salylog.png";
+import useAction from "./hooks/useAction";
+import { useSelector } from "react-redux";
 
 const LoginPage = () => {
   const [width, setWidth] = useState(window.innerWidth);
-  const navigate = useNavigate();
+
+  const { _onSubmit, _onSubmitForget } = useAction();
+
+  const { FORGET } = useSelector((s) => s.login);
 
   useEffect(() => {
     function handleResize() {
       setWidth(window.innerWidth);
     }
     window.addEventListener("resize", handleResize);
-    console.log(width);
     return () => window.removeEventListener("resize", handleResize);
   }, [width]);
 
   const classes = useStyles();
 
-  const onSubmit = (val) => {
-    navigate("/dashboard");
+  const onSubmit = (value) => {
+    if (FORGET) {
+      _onSubmitForget(value);
+    } else {
+      _onSubmit(value);
+    }
   };
 
   return (
@@ -45,7 +53,7 @@ const LoginPage = () => {
         )}
         <Grid item xs={width > 1111 ? 4 : 10}>
           {width > 1111 ? (
-            <Box py={7} px={2}>
+            <Box pt={10} px={5}>
               <Box
                 display={"flex"}
                 flexDirection="row"
@@ -60,13 +68,23 @@ const LoginPage = () => {
                 </Box>
               </Box>
               <Box mt={3}>
-                <h1>Sign In to Marijar.co</h1>
+                <h1>
+                  {FORGET ? "Forgot your password?" : "Sign In to Marijar.co"}
+                </h1>
               </Box>
               <Box mt={1}>
-                <p>The journey is waiting for you!</p>
+                <p style={{ fontSize: "14px", maxWidth: "400px" }}>
+                  {FORGET
+                    ? "Enter email associated with your account and we'll send an email with instruction to recover your account!"
+                    : "The journey is waiting for you!"}
+                </p>
               </Box>
               <Box mt={2} maxWidth={500}>
-                <LoginForm onSubmit={onSubmit} classes={classes} />
+                {FORGET ? (
+                  <ForgetForm onSubmit={onSubmit} classes={classes} />
+                ) : (
+                  <LoginForm onSubmit={onSubmit} classes={classes} />
+                )}
               </Box>
             </Box>
           ) : (
@@ -75,8 +93,8 @@ const LoginPage = () => {
               flexDirection="column"
               alignItems={"center"}
               justifyContent={"center"}
-              py={7}
-              px={2}
+              pt={10}
+              px={5}
             >
               <Box
                 display={"flex"}
@@ -92,13 +110,23 @@ const LoginPage = () => {
                 </Box>
               </Box>
               <Box mt={3}>
-                <h1 style={{ textAlign: "center" }}>Sign In to Marijar.co</h1>
+                <h1 style={{ textAlign: "center" }}>
+                  {FORGET ? "Forgot your password?" : "Sign In to Marijar.co"}
+                </h1>
               </Box>
               <Box mt={1}>
-                <p>The journey is waiting for you!</p>
+                <p style={{ fontSize: "14px", maxWidth: "400px" }}>
+                  {FORGET
+                    ? "Enter email associated with your account and we'll send an email with instruction to recover your account!"
+                    : "The journey is waiting for you!"}
+                </p>
               </Box>
               <Box mt={2} minWidth={300} maxWidth={1000}>
-                <LoginForm onSubmit={onSubmit} classes={classes} />
+                {FORGET ? (
+                  <ForgetForm onSubmit={onSubmit} classes={classes} />
+                ) : (
+                  <LoginForm onSubmit={onSubmit} classes={classes} />
+                )}
               </Box>
             </Box>
           )}

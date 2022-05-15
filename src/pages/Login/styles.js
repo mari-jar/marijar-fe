@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     padding: ".8rem 1rem !important",
     color: "#fff !important",
     textTransform: "capitalize !important",
-    fontSize: "18px",
+    fontSize: "14px",
     fontWeight: "500",
   },
   forgotButton: {

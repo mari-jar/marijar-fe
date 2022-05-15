@@ -7,6 +7,7 @@ import theme from "./configs/theme";
 import GlobalStyles from "./configs/GlobalStyles";
 import routes from "./routes";
 import { getToken, checkExpireTime, clearStorages } from "./utils/storage";
+import { SnackbarProvider } from "notistack";
 
 const loginStatus = () => {
   if (!getToken()) {
@@ -25,8 +26,15 @@ const App = ({ store }) => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        {routing}
+        <SnackbarProvider
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+        >
+          <GlobalStyles />
+          {routing}
+        </SnackbarProvider>
       </ThemeProvider>
     </Provider>
   );

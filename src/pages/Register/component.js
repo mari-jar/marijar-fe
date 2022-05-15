@@ -33,14 +33,14 @@ const Register = () => {
       <Grid container direction={"row"} justifyContent="center">
         {width > 1111 && (
           <Grid item xs={8}>
-            <Box mx={width <= 1220 ? 20 : width <= 1460 ? 30 : 40} mt={10}>
+            <Box mx={width <= 1220 ? 20 : width <= 1460 ? 30 : 40} mt={15}>
               <img src={Saly} alt="saly" height={"600px"} />
             </Box>
           </Grid>
         )}
         <Grid item xs={width > 1111 ? 4 : 10}>
           {width > 1111 ? (
-            <Box py={7} px={2}>
+            <Box pt={10} px={5}>
               <Box
                 display={"flex"}
                 flexDirection="row"
@@ -70,8 +70,8 @@ const Register = () => {
               flexDirection="column"
               alignItems={"center"}
               justifyContent={"center"}
-              py={7}
-              px={2}
+              pt={10}
+              px={5}
             >
               <Box
                 display={"flex"}
