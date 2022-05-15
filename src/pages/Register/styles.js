@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     background: "#fefefe",
     height: "100%",
     transition: "background 1ms ease-in-out",
+    minHeight: "100vh",
   },
   logo: {
     fontWeight: "600",

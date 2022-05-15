@@ -35,7 +35,7 @@ const LoginForm = ({ classes, handleSubmit }) => {
     <form onSubmit={handleSubmit}>
       <Grid container direction="column" justifyContent="start">
         <Grid item xs={12}>
-          <Box my={1}>
+          <Box mt={1}>
             <Field
               classes={classes}
               fullWidth
@@ -47,7 +47,7 @@ const LoginForm = ({ classes, handleSubmit }) => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Box my={1}>
+          <Box mt={1}>
             <Field
               classes={classes}
               fullWidth
@@ -62,7 +62,6 @@ const LoginForm = ({ classes, handleSubmit }) => {
         <Grid item xs={12}>
           <Box
             mt={2}
-            px={2}
             display="flex"
             flexDirection={"row"}
             justifyContent="space-between"
@@ -79,7 +78,7 @@ const LoginForm = ({ classes, handleSubmit }) => {
           </Box>
         </Grid>
         <Grid item xs={12}>
-          <Box px={5} mt={4}>
+          <Box px={2} mt={4}>
             <Button className={classes.buttonLogin} fullWidth type="submit">
               Sign In
             </Button>
@@ -87,7 +86,7 @@ const LoginForm = ({ classes, handleSubmit }) => {
         </Grid>
         <Grid item xs={12}>
           <Box
-            px={5}
+            px={2}
             mt={4}
             display="flex"
             alignItems={"center"}

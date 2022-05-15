@@ -6,15 +6,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${loginBg})`,
     backgroundSize: "cover",
     width: "100%",
-    height: "100vh",
     "-webkit-background-size": "cover",
     "-moz-background-size": "cover",
     "-o-background-size": "cover",
+    minHeight: "100vh",
   },
   rootNoBg: {
     background: "#fefefe",
-    height: "100vh",
+    height: "100%",
     transition: "background 1ms ease-in-out",
+    minHeight: "100vh",
   },
   logo: {
     fontWeight: "600",
