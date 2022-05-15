@@ -38,14 +38,14 @@ const Register = () => {
             </Box>
           </Grid>
         )}
-        <Grid item xs={width > 1111 ? 4 : 6}>
+        <Grid item xs={width > 1111 ? 4 : 10}>
           {width > 1111 ? (
             <Box py={7} px={2}>
               <Box
                 display={"flex"}
                 flexDirection="row"
                 alignItems="center"
-                justifyContent={width > 1111 ? "start" : "center"}
+                justifyContent={"start"}
               >
                 <Box>
                   <img src={Logo} alt="logo" height={"45px"} />
@@ -57,10 +57,10 @@ const Register = () => {
               <Box mt={3}>
                 <h1>Sign Up to Marijar.co</h1>
               </Box>
-              <Box mt={2}>
+              <Box mt={1}>
                 <p>Start your journey now!</p>
               </Box>
-              <Box py={2} maxWidth={500}>
+              <Box mt={2} maxWidth={500}>
                 <RegisterForm onSubmit={onSubmit} classes={classes} />
               </Box>
             </Box>
@@ -77,7 +77,7 @@ const Register = () => {
                 display={"flex"}
                 flexDirection="row"
                 alignItems="center"
-                justifyContent={width > 1111 ? "start" : "center"}
+                justifyContent={"center"}
               >
                 <Box>
                   <img src={Logo} alt="logo" height={"45px"} />
@@ -89,10 +89,10 @@ const Register = () => {
               <Box mt={3}>
                 <h1 style={{ textAlign: "center" }}>Sign Up to Marijar.co</h1>
               </Box>
-              <Box mt={2}>
+              <Box mt={1}>
                 <p>Start your journey now!</p>
               </Box>
-              <Box py={2} minWidth={300} maxWidth={500}>
+              <Box mt={2} minWidth={300} maxWidth={500}>
                 <RegisterForm onSubmit={onSubmit} classes={classes} />
               </Box>
             </Box>
