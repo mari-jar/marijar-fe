@@ -63,7 +63,11 @@ function useAction() {
 
       navigate("/dashboard");
     } catch (error) {
-      enqueueSnackbar(error.message, {
+      const message =
+        error.message === "Surel atau kata sandi anda salah"
+          ? "Your email or password is incorrect"
+          : error.message;
+      enqueueSnackbar(message, {
         variant: "error",
         preventDuplicate: true,
         autoHideDuration: 2000,
