@@ -17,25 +17,25 @@ const routes = (login) => [
   },
   {
     path: "/login",
-    element: <Login />,
+    element: login ? <Navigate to="/dashboard" /> : <Login />,
   },
   {
     path: "/register",
-    element: <Register />,
+    element: login ? <Navigate to="/dashboard" /> : <Register />,
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: !login ? <Navigate to="/login" /> : <DashboardLayout />,
     children: [{ path: "", element: <DummyComp title="dashboard" /> }],
   },
   {
     path: "/materi",
-    element: <DashboardLayout />,
+    element: !login ? <Navigate to="/login" /> : <DashboardLayout />,
     children: [{ path: "", element: <DummyComp title="materi" /> }],
   },
   {
     path: "/kelas",
-    element: <DashboardLayout />,
+    element: !login ? <Navigate to="/login" /> : <DashboardLayout />,
     children: [{ path: "", element: <DummyComp title="kelas" /> }],
   },
   {

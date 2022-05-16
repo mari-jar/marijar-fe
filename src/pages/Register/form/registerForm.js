@@ -3,14 +3,14 @@ import {
   InputBase,
   FormControl,
   FormHelperText,
-  FormControlLabel,
-  Checkbox,
   Grid,
   Box,
+  CircularProgress,
   Button,
 } from "@mui/material";
 import { Field } from "redux-form";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const renderField = ({
   classes,
@@ -30,6 +30,8 @@ const renderField = ({
 
 const LoginForm = ({ classes, handleSubmit }) => {
   const navigate = useNavigate();
+
+  const { SUBMIT_REGISTER } = useSelector((s) => s.register);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -103,7 +105,11 @@ const LoginForm = ({ classes, handleSubmit }) => {
         <Grid item xs={12}>
           <Box px={2} mt={4}>
             <Button className={classes.buttonLogin} fullWidth type="submit">
-              Sign Up
+              {SUBMIT_REGISTER ? (
+                <CircularProgress style={{ color: "#fff" }} size={24} />
+              ) : (
+                "Sign Up"
+              )}
             </Button>
           </Box>
         </Grid>

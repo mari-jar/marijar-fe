@@ -53,82 +53,17 @@ const LoginPage = () => {
         )}
         <Grid item xs={width > 1111 ? 4 : 10}>
           {width > 1111 ? (
-            <Box pt={10} px={5}>
-              <Box
-                display={"flex"}
-                flexDirection="row"
-                alignItems="center"
-                justifyContent={"start"}
-              >
-                <Box>
-                  <img src={Logo} alt="logo" height={"45px"} />
-                </Box>
-                <Box ml={2}>
-                  <p className={classes.logo}>Marijar.co</p>
-                </Box>
-              </Box>
-              <Box mt={3}>
-                <h1>
-                  {FORGET ? "Forgot your password?" : "Sign In to Marijar.co"}
-                </h1>
-              </Box>
-              <Box mt={1}>
-                <p style={{ fontSize: "14px", maxWidth: "400px" }}>
-                  {FORGET
-                    ? "Enter email associated with your account and we'll send an email with instruction to recover your account!"
-                    : "The journey is waiting for you!"}
-                </p>
-              </Box>
-              <Box mt={2} maxWidth={500}>
-                {FORGET ? (
-                  <ForgetForm onSubmit={onSubmit} classes={classes} />
-                ) : (
-                  <LoginForm onSubmit={onSubmit} classes={classes} />
-                )}
-              </Box>
-            </Box>
+            <LargeLoginForm
+              classes={classes}
+              forget={FORGET}
+              onSubmit={onSubmit}
+            />
           ) : (
-            <Box
-              display={"flex"}
-              flexDirection="column"
-              alignItems={"center"}
-              justifyContent={"center"}
-              pt={10}
-              px={5}
-            >
-              <Box
-                display={"flex"}
-                flexDirection="row"
-                alignItems="center"
-                justifyContent={"center"}
-              >
-                <Box>
-                  <img src={Logo} alt="logo" height={"45px"} />
-                </Box>
-                <Box ml={2}>
-                  <p className={classes.logo}>Marijar.co</p>
-                </Box>
-              </Box>
-              <Box mt={3}>
-                <h1 style={{ textAlign: "center" }}>
-                  {FORGET ? "Forgot your password?" : "Sign In to Marijar.co"}
-                </h1>
-              </Box>
-              <Box mt={1}>
-                <p style={{ fontSize: "14px", maxWidth: "400px" }}>
-                  {FORGET
-                    ? "Enter email associated with your account and we'll send an email with instruction to recover your account!"
-                    : "The journey is waiting for you!"}
-                </p>
-              </Box>
-              <Box mt={2} minWidth={300} maxWidth={1000}>
-                {FORGET ? (
-                  <ForgetForm onSubmit={onSubmit} classes={classes} />
-                ) : (
-                  <LoginForm onSubmit={onSubmit} classes={classes} />
-                )}
-              </Box>
-            </Box>
+            <SmallLoginForm
+              classes={classes}
+              forget={FORGET}
+              onSubmit={onSubmit}
+            />
           )}
         </Grid>
       </Grid>
@@ -137,3 +72,88 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+const LargeLoginForm = ({ classes, forget, onSubmit }) => {
+  const FORGET = forget;
+  return (
+    <Box pt={10} px={5}>
+      <Box
+        display={"flex"}
+        flexDirection="row"
+        alignItems="center"
+        justifyContent={"start"}
+      >
+        <Box>
+          <img src={Logo} alt="logo" height={"45px"} />
+        </Box>
+        <Box ml={2}>
+          <p className={classes.logo}>Marijar.co</p>
+        </Box>
+      </Box>
+      <Box mt={3}>
+        <h1>{FORGET ? "Forgot your password?" : "Sign In to Marijar.co"}</h1>
+      </Box>
+      <Box mt={1}>
+        <p style={{ fontSize: "14px", maxWidth: "400px" }}>
+          {FORGET
+            ? "Enter email associated with your account and we'll send an email with instruction to recover your account!"
+            : "The journey is waiting for you!"}
+        </p>
+      </Box>
+      <Box mt={2} maxWidth={500}>
+        {FORGET ? (
+          <ForgetForm onSubmit={onSubmit} classes={classes} />
+        ) : (
+          <LoginForm onSubmit={onSubmit} classes={classes} />
+        )}
+      </Box>
+    </Box>
+  );
+};
+
+const SmallLoginForm = ({ classes, forget, onSubmit }) => {
+  const FORGET = forget;
+  return (
+    <Box
+      display={"flex"}
+      flexDirection="column"
+      alignItems={"center"}
+      justifyContent={"center"}
+      pt={10}
+      px={5}
+    >
+      <Box
+        display={"flex"}
+        flexDirection="row"
+        alignItems="center"
+        justifyContent={"center"}
+      >
+        <Box>
+          <img src={Logo} alt="logo" height={"45px"} />
+        </Box>
+        <Box ml={2}>
+          <p className={classes.logo}>Marijar.co</p>
+        </Box>
+      </Box>
+      <Box mt={3}>
+        <h1 style={{ textAlign: "center" }}>
+          {FORGET ? "Forgot your password?" : "Sign In to Marijar.co"}
+        </h1>
+      </Box>
+      <Box mt={1}>
+        <p style={{ fontSize: "14px", maxWidth: "400px" }}>
+          {FORGET
+            ? "Enter email associated with your account and we'll send an email with instruction to recover your account!"
+            : "The journey is waiting for you!"}
+        </p>
+      </Box>
+      <Box mt={2} minWidth={300} maxWidth={1000}>
+        {FORGET ? (
+          <ForgetForm onSubmit={onSubmit} classes={classes} />
+        ) : (
+          <LoginForm onSubmit={onSubmit} classes={classes} />
+        )}
+      </Box>
+    </Box>
+  );
+};

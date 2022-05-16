@@ -1,10 +1,10 @@
 import fetch, { basicAuth } from "../../utils/fetch";
 import { baseUrl } from "../index";
 
-const loginRepository = (data) => {
+const registerUser = (data) => {
   const configs = {
     method: "POST",
-    url: `${baseUrl}/user/login`,
+    url: `${baseUrl}/user`,
     data,
     headers: {
       Authorization: basicAuth,
@@ -13,4 +13,4 @@ const loginRepository = (data) => {
   return fetch(configs);
 };
 
-export default loginRepository;
+export default registerUser;

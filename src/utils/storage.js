@@ -2,6 +2,7 @@ const EXPIRE_TIME_STORAGE = "marijar_client_expire_time";
 const SESSION_TIME = "marijar_client_session_time";
 const TOKEN_STORAGE = "marijar_client_access_token";
 const USER_DATA_STORAGE = "marijar_client_user_data";
+const REFRESH_TOKEN_STORAGE = "marijar_client_refresh_token";
 
 export function setToken(value) {
   localStorage.setItem(TOKEN_STORAGE, value);
@@ -11,11 +12,20 @@ export function getToken() {
   return localStorage.getItem(TOKEN_STORAGE);
 }
 
+export function setRefreshToken(value) {
+  localStorage.setItem(REFRESH_TOKEN_STORAGE, value);
+}
+
+export function getRefreshToken() {
+  return localStorage.getItem(REFRESH_TOKEN_STORAGE);
+}
+
 export function clearStorages() {
   localStorage.removeItem(TOKEN_STORAGE);
   localStorage.removeItem(EXPIRE_TIME_STORAGE);
   localStorage.removeItem(USER_DATA_STORAGE);
   localStorage.removeItem(SESSION_TIME);
+  localStorage.removeItem(REFRESH_TOKEN_STORAGE);
 }
 
 export function setExpireTime(value) {

@@ -6,6 +6,14 @@ import { OPTIONS, LOADING, STATUS } from "../redux/keys";
 import initiateLogin from "../../../repository/Login/initiateLogin";
 import { encKey } from "../../../configs/globalKeys";
 import { useSnackbar } from "notistack";
+import jwtDecode from "jwt-decode";
+import {
+  setExpireTime,
+  setRefreshToken,
+  setToken,
+  setUserData,
+} from "../../../utils/storage";
+
 function useAction() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,18 +47,27 @@ function useAction() {
         cookies.remove("userInfo");
       }
 
-      const loginData = await initiateLogin(val);
-      console.log(loginData);
+      const {
+        data: { accessToken, id, refreshToken },
+      } = await initiateLogin(val);
+
+      const decodedData = jwtDecode(accessToken);
+
+      setToken(accessToken);
+      setExpireTime(decodedData.exp);
+      setUserData({
+        id: id,
+        sub: decodedData.sub,
+      });
+      setRefreshToken(refreshToken);
+
+      navigate("/dashboard");
     } catch (error) {
       enqueueSnackbar(error.message, {
         variant: "error",
         preventDuplicate: true,
         autoHideDuration: 2000,
       });
-
-      setTimeout(() => {
-        console.log("teeasdla");
-      }, 2000);
 
       dispatch({ type: STATUS.FAILED, message: error.message });
     } finally {

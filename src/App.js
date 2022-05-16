@@ -6,7 +6,7 @@ import { ThemeProvider } from "@mui/material";
 import theme from "./configs/theme";
 import GlobalStyles from "./configs/GlobalStyles";
 import routes from "./routes";
-import { getToken, checkExpireTime, clearStorages } from "./utils/storage";
+import { getToken, checkExpireTime } from "./utils/storage";
 import { SnackbarProvider } from "notistack";
 
 const loginStatus = () => {
