@@ -2,7 +2,7 @@ import { CONTAINER, LOADING, STATUS } from "./keys";
 
 const initialState = {
   [LOADING.SUBMIT]: false,
-  [CONTAINER.WAITING_FOR_CONFIRMATION]: true,
+  [CONTAINER.WAITING_FOR_CONFIRMATION]: false,
   message: "",
 };
 
