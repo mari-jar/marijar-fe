@@ -53,7 +53,6 @@ function useAction() {
       } = await registerUser({
         name: value.name,
         email: value.email,
-        username: value.email,
         phoneNumber: value.phoneNumber,
         password: value.password,
       });
@@ -65,9 +64,9 @@ function useAction() {
         preventDuplicate: true,
         autoHideDuration: 2000,
       });
-      await requestEmailVerif({ id: id });
-
       dispatch({ type: CONTAINER.WAITING_FOR_CONFIRMATION, waiting: true });
+
+      await requestEmailVerif({ id: id });
     } catch (error) {
       enqueueSnackbar(error.message, {
         variant: "error",

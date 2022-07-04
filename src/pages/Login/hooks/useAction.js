@@ -51,6 +51,12 @@ function useAction() {
         data: { accessToken, id, refreshToken },
       } = await initiateLogin(val);
 
+      if (!accessToken) {
+        throw {
+          message: "Account is not active yet! Please check your email",
+        };
+      }
+
       const decodedData = jwtDecode(accessToken);
 
       setToken(accessToken);
@@ -58,6 +64,7 @@ function useAction() {
       setUserData({
         id: id,
         sub: decodedData.sub,
+        role: decodedData.role,
       });
       setRefreshToken(refreshToken);
 
@@ -70,7 +77,7 @@ function useAction() {
       enqueueSnackbar(message, {
         variant: "error",
         preventDuplicate: true,
-        autoHideDuration: 2000,
+        autoHideDuration: 3000,
       });
 
       dispatch({ type: STATUS.FAILED, message: error.message });

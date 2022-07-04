@@ -1,9 +1,10 @@
 import React from "react";
 import { makeStyles } from "@mui/styles";
-import { Box, Grid } from "@mui/material";
-import Icons from "../../assets/icons";
+import { Box, Divider, Grid } from "@mui/material";
+import Icons from "../../../assets/icons";
 import { useLocation, useNavigate } from "react-router";
 import clsx from "clsx";
+import useAction from "./hooks/useAction";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,8 +45,19 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     color: "#828282",
   },
+  botNav: {
+    marginLeft: "1rem",
+    fontSize: "14px",
+    fontWeight: 400,
+    color: "#828282",
+  },
   navTitleActive: {
     color: theme.palette.primary.main,
+  },
+  copyright: {
+    fontSize: "14px",
+    fontWeight: 400,
+    color: "#9EA7AD;",
   },
 }));
 
@@ -74,16 +86,66 @@ const items = [
       normal: Icons.kelas,
     },
   },
+  {
+    name: "Jadwal",
+    path: "/jadwal",
+    icon: {
+      active: Icons.jadwalActive,
+      normal: Icons.jadwal,
+    },
+  },
+  {
+    name: "Rekap Nilai",
+    path: "/score",
+    icon: {
+      active: Icons.nilaiActive,
+      normal: Icons.nilai,
+    },
+  },
+];
+
+const bottomsItems = [
+  {
+    name: "Pengaturan",
+    path: "/setting",
+    icon: {
+      active: Icons.settingActive,
+      normal: Icons.setting,
+    },
+  },
+  {
+    name: "Tentang",
+    path: "/about",
+    icon: {
+      active: Icons.helpActive,
+      normal: Icons.help,
+    },
+  },
+  {
+    name: "Logout",
+    path: "/logout",
+    icon: {
+      active: Icons.logoutActive,
+      normal: Icons.logout,
+    },
+  },
 ];
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { _initiateLogout } = useAction();
+
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Grid container direction={"column"}>
+      <Grid
+        container
+        direction={"column"}
+        justifyContent="space-between"
+        height={"100%"}
+      >
         <Grid item>
           <Box
             pt={5}
@@ -95,8 +157,6 @@ const Sidebar = () => {
             <img src={Icons.logo} alt="logo" width={"40px"} />
             <p className={classes.logo}>Marijar.co</p>
           </Box>
-        </Grid>
-        <Grid item>
           <Box
             mt={10}
             display={"flex"}
@@ -140,6 +200,72 @@ const Sidebar = () => {
                 </Box>
               );
             })}
+          </Box>
+        </Grid>
+
+        <Grid item>
+          <Box px={2} py={2}>
+            <Divider
+              sx={{
+                height: "2px",
+                border: "none",
+                backgroundColor: "rgba(0, 0, 0, 0.12)",
+                color: "rgba(0, 0, 0, 0.12)",
+              }}
+            />
+          </Box>
+          <Box display="flex" flexDirection={"column"} alignItems="start">
+            <Box>
+              {bottomsItems.map((item, idx) => {
+                const activeItem = item.path === location.pathname;
+                return (
+                  <Box
+                    key={"sidebaritem" + idx}
+                    display={"flex"}
+                    flexDirection="row"
+                    alignItems="center"
+                    className={classes.navItem}
+                    onClick={() => {
+                      if (item.path === "/logout") {
+                        _initiateLogout();
+                      } else {
+                        navigate(item.path);
+                      }
+                    }}
+                  >
+                    {activeItem && <div className={classes.active} />}
+                    <Box
+                      ml={4}
+                      display={"flex"}
+                      flexDirection="row"
+                      alignItems="center"
+                    >
+                      <img
+                        src={activeItem ? item.icon.active : item.icon.normal}
+                        alt="icon-sidebar"
+                      />
+                      <p
+                        className={
+                          activeItem
+                            ? clsx(classes.botNav, classes.navTitleActive)
+                            : classes.botNav
+                        }
+                      >
+                        {item.name}
+                      </p>
+                    </Box>
+                  </Box>
+                );
+              })}
+            </Box>
+            <Box
+              display={"flex"}
+              justifySelf={"center"}
+              alignSelf="center"
+              py={3}
+            >
+              <p className={classes.copyright}>&copy; Marijar.Co 2022</p>
+            </Box>
           </Box>
         </Grid>
       </Grid>
